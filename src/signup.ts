@@ -62,6 +62,11 @@ app.post("/signup", async (req: Request, res: Response) => {
     });
 });
 
+app.get("/accounts", async (req: Request, res: Response) => {
+    const accountData = await connection.query("select * from ccca.account");
+    res.json(accountData);
+});
+
 app.get("/accounts/:accountId", async (req: Request, res: Response) => {
     const accountId = req.params.accountId;
     // const account = accounts.find((account: any) => account.accountId === accountId);
@@ -69,4 +74,6 @@ app.get("/accounts/:accountId", async (req: Request, res: Response) => {
     res.json(accountData);
 });
 
-app.listen(3000);
+app.listen(3000, '::', () => {
+    console.log("Server is running on port 3000");
+});
